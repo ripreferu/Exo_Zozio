@@ -68,7 +68,6 @@ class user():
         self._email = email
         if ispassword_hashed and mot_de_passe is not None:
             self.__mot_de_passe = mot_de_passe
-        # self.__mot_de_passe.digest_size = 50
         elif (mot_de_passe is not None and type(mot_de_passe) == str
                 and not ispassword_hashed):
             mot_de_passe = mot_de_passe.encode("utf-8")
@@ -150,6 +149,7 @@ class user():
         if self.isinsql():
             print("l'utilisateur est déjà dans la base de donnée")
         else:
+	#Etape 2
             utilisateur = (self.nom, self.prenom,
                            self.password, self.mail)
             req = """INSERT into users (name, surname, enc_pass, email)
@@ -157,11 +157,11 @@ class user():
             cursor.execute(req, utilisateur)
             conn.commit()
 
-    def delelete_user(self):
+    def delete_user(self):
         """ supprimer un utilisateur
         initialment conçu comme une surcharge de l'opérateur __del__
         il est préférable de la laisser en fonction non surchargé
-        car python supprime les object créer en employant cette méthode
+        car python supprime les object créer en employant la méthode del
         """
         if self.isinsql():
             req = """
@@ -260,4 +260,4 @@ def close_conn():
     conn.close()
 
 
-pierre = user("Nom", "PIERRE", "yolo@mail", "test")
+#pierre = user("Nom", "PIERRE", "yolo@mail", "test")
