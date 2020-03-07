@@ -17,9 +17,9 @@ Le script python s'appelle mysql_test.py
 
 Les fichiers documentation disponibles sont:
 - brouillon.org expliquant quelques choix de conceptions
-- server_sql.org (finalisation requise)
-- exemples.org (en cours de rédaction)
-- installation.org (TODO)
+- server_sql.org pour la configuration du serveur mysql
+- exemples.org  des exemples d'utilisation
+- installation.org un guide pour l'installation
 Le fichier sql\_cnf correspond à ma configuration sql et sql\_param est le résultat de la commande mysql --help sur mon PC
 
 Remarques Importantes

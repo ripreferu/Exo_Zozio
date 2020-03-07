@@ -1,0 +1,17 @@
+#+TITLE: Exemples d'utilisation
+
+* Utilisation 1
+ouvrir le script et l'éxecuter dans un ide python
+
+* Utilisation 2
+Créer un script python en utilisant la bibliothèque 
+#+BEGIN_SRC python
+import mysql_test
+"""toutes les fonctions de l'api sont disponibles en tapant api.user() """
+#+END_SRC
+
+* Utilisation 3
+transformer le script en executable C avec cython
+possibilité de l'utiliser de gagner en temps d'execution du type hinting ,etc
+lien  [[https://sametmax.com/peut-on-compiler-un-programme-python/][ressource en ligne peut-on compiler un programme python]]
+
