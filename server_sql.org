@@ -1,0 +1,98 @@
+
+* Configuration mysql
+
+La connexion à la base sql  dépend surtout de la configuration du serveur SQL
+Dans ma config
+#+BEGIN_SRC text
+  #
+  # This group is read both both by the client and the server
+  # use it for options that affect everything
+  #
+  [client-server]
+
+  #
+  # include all files from the config directory
+  #
+  !includedir /etc/my.cnf.d
+
+#+END_SRC
+
+#+BEGIN_SRC text
+  #
+  # These groups are read by MariaDB server.
+  # Use it for options that only the server (but not clients) should see
+  #
+  # See the examples of server my.cnf files in /usr/share/mysql/
+  #
+
+  # this is read by the standalone daemon and embedded servers
+  [server]
+
+  # this is only for the mysqld standalone daemon
+  [mysqld]
+
+  #
+  # * Galera-related settings
+  #
+  [galera]
+  # Mandatory settings
+  #wsrep_on=ON
+  #wsrep_provider=
+  #wsrep_cluster_address=
+  #binlog_format=row
+  #default_storage_engine=InnoDB
+  #innodb_autoinc_lock_mode=2
+  #
+  # Allow server to accept connections on all interfaces.
+  #
+  #bind-address=0.0.0.0
+  #
+  # Optional setting
+  #wsrep_slave_threads=1
+  #innodb_flush_log_at_trx_commit=0
+
+  # this is only for embedded server
+  [embedded]
+
+  # This group is only read by MariaDB servers, not by MySQL.
+  # If you use the same .cnf file for MySQL and MariaDB,
+  # you can put MariaDB-only options here
+  [mariadb]
+
+  # This group is only read by MariaDB-10.4 servers.
+  # If you use the same .cnf file for MariaDB of different versions,
+  # use this group for options that older servers don't understand
+  [mariadb-10.4]
+
+
+#+END_SRC
+
+* Comment faire tourner simplement le programme?
+** Cas simple je ne dispose pas d'un serveur sql
+C'etait aussi mon cas.
+Pour ma part j'ai utilisé une installation propre de mysql MariaDB version 10.4.12
+Mon installation n'est ni configuré ni sécurisé.
+J'ai juste créer le répertoire ~/var/lib/mysql~ et je l'ai associé à  l'utilisateur systeme mysql
+Pour faire tourner le programme il faut lancer le daemon qui gère le serveur sql avant le reste
+
+#+BEGIN_SRC bash
+!#/bin/env bash
+sudo mysqld_safe
+#+END_SRC
+
+Pour vérifier si le serveur fonctionne correctement 
+il suffit de taper la commande ~mysql~
+Si tu accèdes au shell mysql , tout va bien !
+Sinon réfères-toi au manuel d'installation de mysql
+
+Pour finaliser l'étape d'installation, tu dois créer une nouvelle base de données depuis le shell sql
+Voici la commande à utiliser dans le shell mysql pour créer la base de données test
+~CREATE DATABASE test;~ 
+La dernière étape consiste à modifier le script python pour l'ajuster à ton besoin
+=TODO INCLURE UN LIEN VERS FICHIER=
+
+** Cas 2 je dispose déjà d'un serveur mysql
+Si le serveur mysql existe déjà et est déjà configuré
+Tu dois adapter la ligne du script python
+=IDEM LIGNE DU FICHIER À INCLURE=
+

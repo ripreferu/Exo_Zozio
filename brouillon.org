@@ -1,0 +1,55 @@
+#+TITLE: Brouillon
+#+AUTHOR:PIERRE FUR
+* Piste de réflexions
+Forme du travail attendu:
+API? Qu'est ce que c'est ?
+
+Pour moi c'est fichier qui contient les fonctions complexes que l'on a pas spécialement envie de re-coder
+
+Langage ⋆ Python
+
+Notions utilisées: SQL/ mongoDB, securité.
+
+* BDD et sécurité
+Le problème de base de données utilisateur c'est qu'elle contiennent des données sensibles (notamment les mots de passes)
+
+Les problématiques de sécurité sont bien connues dans les BDD mysql mais pas vraiment dans mongoDB.
+
+MongoDB est plus flexible mais les données sont stocké en clair au format json.
+
+article trouvé sur linux.fr sur comment sécurisé une base de données utilisateur?
+[[https://linuxfr.org/users/elyotna/journaux/l-art-de-stocker-des-mots-de-passe]]
+
+[[https://docs.mongodb.com/manual/core/security-client-side-encryption/][MongoDB et la sécurité]]
+[[https://docs.mongodb.com/manual/core/security-client-side-encryption/]]
+
+* connection à la BDD
+Dans le cadre de l'exercice je me suis restreint à un seul cas:
+un serveur mysql hébergé en local
+On considère que l'utilisateur dispose des droits de modifications sur la base de données
+** Problème Sécurité interfaçage mySQL-server
+
+#+BEGIN_SRC python
+import mysql.connector 
+
+conn = mysql.connector.connect(host="localhost",user="root",password="XXX", database="test1")
+cursor = conn.cursor()
+conn.close()
+#+END_SRC
+Le mot de passe de utilisateur mysql apparaît en clair dans le code.
+Cela n'est pas spécialement souhaitable.
+Il est possible d'initialiser la connexion mysql via un fichier de configuration.
+
+** Comparaison avec d'autres logiciel de bases de données
+Initialement je pensais crypté les données à même la bases de données via des fonctions internes aux serveurs des bases données
+Au départ j'hésitait donc entre sqlite et MongoDB
+Problématiques:
+- *sqlite* ne dispose de fonctions interne d'encryption et son usage dans le domaine professionnel est limité
+- *MongoDB* est considéré comme les Bases de données next-GEN, il est capable de générer des tables dynamiques. Seuls inconvénients les fonctions de chiffrage sont difficiles à utiliser et nécessité l'utilisation de schémas JSON qui rigidifie la notions de tables dynamique propres à Django
+Deplus MongoDB nécessite aussi des compte utilisateurs pour accéder la table (comme mysql /mariaDB)
+
+Conclusion j'ai choisi d'utiliser mysql et son wrapper python
+* Documentation-META
+
+- [X] un fichier requirements.txt
+- [X] un exemple d'utilisation
