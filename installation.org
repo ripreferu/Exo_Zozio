@@ -1,0 +1,24 @@
+#+TITLE: Notice d'installation
+
+* Etape 1
+
+cloner le git 
+
+* Etape 2
+installer python
+je recommande la distribution conda
+
+* Etape 3
+installer les bibliothèques python nécessaires
+
+#+BEGIN_SRC bash
+pip install -r requirement.txt
+#+END_SRC
+
+* Etape 4
+installer ou configurer les serveurs mysql
+cf [[file:server_sql.org][ce fichier]]  
+
+Vous avez fini d'installer le programme
+Vous pouvez passer aux exemples
+ ~Lien à ajouter~

@@ -1,4 +1,5 @@
 Ceci est une API qui a servi d'exercice d'embauche:
+
 Consigne de l'exercice
 ---
 > Faire une API (python ou NodeJS) et [une] base de donné (SQL ou MongoDB) de gestion d'utilisateurs.
@@ -21,7 +22,7 @@ Les fichiers documentation disponibles sont:
 - installation.org (TODO)
 Le fichier sql\_cnf correspond à ma configuration sql et sql\_param est le résultat de la commande mysql --help sur mon PC
 
-Remarques Importante
+Remarques Importantes
 ---
 L'algorithme répond aux exclusivement besoin de l'exercice
 Il ne répond pas explicitement aux notions légales tel que la RGPD ou autres.

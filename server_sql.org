@@ -89,10 +89,10 @@ Pour finaliser l'étape d'installation, tu dois créer une nouvelle base de donn
 Voici la commande à utiliser dans le shell mysql pour créer la base de données test
 ~CREATE DATABASE test;~ 
 La dernière étape consiste à modifier le script python pour l'ajuster à ton besoin
-=TODO INCLURE UN LIEN VERS FICHIER=
+[[file:mysql_test.py::4][lien vers le script]]
+
 
 ** Cas 2 je dispose déjà d'un serveur mysql
 Si le serveur mysql existe déjà et est déjà configuré
 Tu dois adapter la ligne du script python
-=IDEM LIGNE DU FICHIER À INCLURE=
-
+[[file:mysql_test.py::4][lien vers le script]]
