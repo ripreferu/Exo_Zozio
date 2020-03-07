@@ -45,8 +45,8 @@ Initialement je pensais crypté les données à même la bases de données via d
 Au départ j'hésitait donc entre sqlite et MongoDB
 Problématiques:
 - *sqlite* ne dispose de fonctions interne d'encryption et son usage dans le domaine professionnel est limité
-- *MongoDB* est considéré comme les Bases de données next-GEN, il est capable de générer des tables dynamiques. Seuls inconvénients les fonctions de chiffrage sont difficiles à utiliser et nécessité l'utilisation de schémas JSON qui rigidifie la notions de tables dynamique propres à Django
-Deplus MongoDB nécessite aussi des compte utilisateurs pour accéder la table (comme mysql /mariaDB)
+- *MongoDB* est considéré comme les Bases de données next-GEN, il est capable de générer des tables dynamiques. Seuls inconvénients les fonctions de chiffrage sont difficiles à utiliser et nécessité l'utilisation de schémas JSON qui rigidifie la notions de tables dynamique propres à MongoDB
+De plus MongoDB nécessite aussi des compte utilisateurs pour accéder la table (comme mysql /mariaDB)
 
 Conclusion j'ai choisi d'utiliser mysql et son wrapper python
 * Documentation-META

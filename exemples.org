@@ -7,7 +7,7 @@ ouvrir le script et l'éxecuter dans un ide python
 Créer un script python en utilisant la bibliothèque 
 #+BEGIN_SRC python
 import mysql_test
-"""toutes les fonctions de l'api sont disponibles en tapant api.user() """
+"""toutes les fonctions de l'api sont disponibles en tapant mysql_test avant chaque fonctions de l'api """
 #+END_SRC
 
 * Utilisation 3
