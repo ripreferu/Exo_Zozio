@@ -1,3 +1,10 @@
+# coding: utf-8
+"""
+Ce module est un prototype de gestion de base de données d'utilisateurs
+"""
+__author__ = "pierre FUR"
+__license__ = "GPLv3"
+__status__ = "prototype"
 import mysql.connector
 import getpass
 import hashlib
@@ -53,6 +60,14 @@ class user():
     Pour un déployement plus sûr il est conseillé d'utiliser Argon2
     en employant des paramètres adaptés.
     https://github.com/p-h-c/phc-winner-argon2
+
+    Le choix du mot de passe est laissé libre
+    (pas de longueur minimale, de limitation au niveau du jeux de caractères,
+    chiffre lettre etc).
+    L'api ne demande par ailleurs aucune confirmation du mot de passe
+
+    Ressource pour créer un mot de passe fort selon la CNIL
+    https://www.cnil.fr/fr/generer-un-mot-de-passe-solide
     """
     def __init__(self, nom, prenom, email, mot_de_passe=None,
                  ispassword_hashed=False):
@@ -106,7 +121,7 @@ class user():
 
     def set_email(self, nouv_email):
         assert type(nouv_email) == str and "@" in nouv_email, \
-            " E-Mail invalide"
+            "E-Mail invalide"
         self._email = nouv_email
     mail = property(get_email, set_email, None, "email de l'utilisateur")
 
@@ -125,7 +140,10 @@ class user():
 
     def get_password(self):
         """ retourne le password sous sa forme encryptée"""
-        return self.__mot_de_passe.hexdigest()
+        if type(self.__mot_de_passe) == bytes:
+            return self.__mot_de_passe.decode("utf-8")
+        else:
+            return self.__mot_de_passe.hexdigest()
     password = property(get_password, set_mot_de_passe, None)
 
     def save(self):
@@ -149,7 +167,7 @@ class user():
         if self.isinsql():
             print("l'utilisateur est déjà dans la base de donnée")
         else:
-	#Etape 2
+            # Etape 2
             utilisateur = (self.nom, self.prenom,
                            self.password, self.mail)
             req = """INSERT into users (name, surname, enc_pass, email)
@@ -241,13 +259,13 @@ def auth(user_email, user_password):
         print("Veuillez reporter le problème au responsable informatique")
         return False
     else:
-        print(rows)
         req = """
         SELECT enc_pass from users
         WHERE id={}
         """.format(rows[0][0])
         cursor.execute(req)
         sql_pass = cursor.fetchone()
+        sql_pass = sql_pass[0].decode("utf-8")
         if sql_pass == encrypted_pass.hexdigest():
             print("l'utilisateur est bien authentifié")
             return True

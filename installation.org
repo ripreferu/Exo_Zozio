@@ -15,10 +15,12 @@ installer les bibliothèques python nécessaires
 pip install -r requirement.txt
 #+END_SRC
 
+En réalité il n'y a qu' un seul module à installer : ~mysql~
+Les autres bibliothèques sont des builts-in de python
 * Etape 4
 installer ou configurer les serveurs mysql
 cf [[file:server_sql.org][ce fichier]]  
 
 Vous avez fini d'installer le programme
 Vous pouvez passer aux exemples
- ~Lien à ajouter~
+[[file:test.py][script python qui permet de tester le possibilité de l'api]]
